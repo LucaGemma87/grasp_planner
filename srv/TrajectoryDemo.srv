@@ -1,0 +1,29 @@
+# put number in the request, as the node listens response
+
+int32 ob
+int32 CYLINDER = 1
+int32 SPHERE = 2
+int32 CONE =3
+int32 PLANE = 4
+
+
+---
+
+
+# Trajectory
+
+Trajectory[100] traj
+
+moveit_msgs/RobotTrajectory moveit_trajectory
+
+#trajectory_processing/IterativeParabolicTimeParameterization iptp;
+ 
+#robot_trajectory/RobotTrajectory rt
+
+# Whether the detection has succeeded or failed
+int32 NO_WRIST_RECEIVED = 1
+int32 NO_OBJECT_POSE = 2
+int32 BAD_OBJECT =3
+int32 OTHER_ERROR = 4
+int32 SUCCESS = 5
+int32 result

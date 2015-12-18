@@ -1,0 +1,53 @@
+<launch>
+
+
+<node pkg="grasp_planner" name="trajectory_manager_demo" type="trajectory_manager_demo" respawn="true" output="screen">
+
+
+  </node>
+
+
+<node pkg="grasp_planner" name="trajectory_demo_cylinder_affordance_1" type="trajectory_demo_cylinder_affordance_1" respawn="true" output="screen">
+
+
+  </node>
+
+<node pkg="grasp_planner" name="trajectory_demo_cylinder_affordance_2" type="trajectory_demo_cylinder_affordance_2" respawn="true" output="screen">
+
+
+  </node>
+
+
+  <node pkg="grasp_planner" name="trajectory_demo_sphere_affordance_1" type="trajectory_demo_sphere_affordance_1" respawn="true" output="screen">
+
+
+  </node>
+
+   <node pkg="grasp_planner" name="trajectory_demo_sphere_affordance_2" type="trajectory_demo_sphere_affordance_2" respawn="true" output="screen">
+
+
+  </node>
+
+    <node pkg="grasp_planner" name="trajectory_demo_cone_affordance_1" type="trajectory_demo_cone_affordance_1" respawn="true" output="screen">
+
+
+  </node>
+
+    <node pkg="grasp_planner" name="trajectory_demo_cone_affordance_2" type="trajectory_demo_cone_affordance_2" respawn="true" output="screen">
+
+
+  </node>
+  
+
+    <node pkg="grasp_planner" name="trajectory_demo_box_affordance_1" type="trajectory_demo_box_affordance_1" respawn="true" output="screen">
+
+
+  </node>
+  
+    <node pkg="grasp_planner" name="trajectory_demo_box_affordance_2" type="trajectory_demo_box_affordance_2" respawn="true" output="screen">
+
+
+  </node>
+  
+
+</launch>

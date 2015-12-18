@@ -1,0 +1,8 @@
+<launch>
+
+<node pkg="grasp_planner" name="grasp_planning" type="grasp_planning" respawn="true" output="screen">
+
+
+  </node>
+
+  </launch>

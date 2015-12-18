@@ -1,0 +1,13 @@
+<launch>
+
+  <include file="$(find my_robot_moveit_config)/launch/demo.launch"/>
+
+
+
+<node pkg="grasp_planner" name="grasp_planning" type="grasp_planning" respawn="true" output="screen">
+
+
+  </node>
+  
+
+</launch>

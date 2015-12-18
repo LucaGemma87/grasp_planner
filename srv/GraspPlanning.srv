@@ -1,0 +1,37 @@
+# put number in the request, as the node listens response
+
+int32 ob
+int32 CYLINDER = 1
+int32 SPHERE = 2
+int32 CONE =3
+int32 PLANE = 4
+
+
+visual_perception/Cylinder cylinder
+
+
+visual_perception/Sphere sphere
+
+
+visual_perception/Cone  cone
+
+
+visual_perception/Plane plane
+
+
+geometry_msgs/PoseStamped WristPose
+
+---
+
+
+# Trajectory
+
+Trajectory[20] traj
+
+# Whether the detection has succeeded or failed
+int32 NO_WRIST_RECEIVED = 1
+int32 NO_OBJECT_POSE = 2
+int32 BAD_OBJECT =3
+#int32 OTHER_ERROR = 4
+int32 SUCCESS = 5
+int32 result

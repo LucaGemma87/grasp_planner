@@ -1,0 +1,54 @@
+<launch>
+
+ <!-- <include file="$(find my_robot_moveit_config)/launch/demo.launch"/> -->
+
+<node pkg="grasp_planner" name="trajectory_manager_online" type="trajectory_manager_online" respawn="true" output="screen">
+
+
+  </node>
+
+<node pkg="grasp_planner" name="trajectory_demo_cylinder_affordance_1_online" type="trajectory_demo_cylinder_affordance_1_online" respawn="true" output="screen">
+
+
+  </node>
+
+<node pkg="grasp_planner" name="trajectory_demo_cylinder_affordance_2_online" type="trajectory_demo_cylinder_affordance_2_online" respawn="true" output="screen">
+
+
+  </node>
+
+
+  <node pkg="grasp_planner" name="trajectory_demo_sphere_affordance_1_online" type="trajectory_demo_sphere_affordance_1_online" respawn="true" output="screen">
+
+
+  </node>
+
+   <node pkg="grasp_planner" name="trajectory_demo_sphere_affordance_2_online" type="trajectory_demo_sphere_affordance_2_online" respawn="true" output="screen">
+
+
+  </node>
+<!-- 
+    <node pkg="grasp_planner" name="trajectory_demo_cone_affordance_1_online" type="trajectory_demo_cone_affordance_1_online" respawn="true" output="screen">
+
+
+  </node>
+
+    <node pkg="grasp_planner" name="trajectory_demo_cone_affordance_2_online" type="trajectory_demo_cone_affordance_2_online" respawn="true" output="screen">
+
+
+  </node>
+  
+  -->
+
+    <node pkg="grasp_planner" name="trajectory_demo_box_affordance_1_online" type="trajectory_demo_box_affordance_1_online" respawn="true" output="screen">
+
+
+  </node> 
+  
+    <node pkg="grasp_planner" name="trajectory_demo_box_affordance_2_online" type="trajectory_demo_box_affordance_2_online" respawn="true" output="screen">
+
+
+  </node>
+  
+
+</launch>
