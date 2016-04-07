@@ -136,7 +136,7 @@ private:
   Trajectory traj[int_traj];
   moveit_msgs::RobotTrajectory trajectory;
   int result((int)0);
-  int iteration((int)4);
+  int iteration((int)2);
   int success((int)5);
   ros::NodeHandle nh;
 
@@ -158,6 +158,7 @@ private:
     visual_perception::Cylinder cylinder;
       
      cylinder = request.cylinder;
+       ROS_INFO ("TrajectoryDemosManager:Success in receving the cylinder transformation with 7 elements (Orient(x,y,z,w),Pos(x,y,z)): %f, %f ,%f, %f, %f, %f, %f",cylinder.pose.pose.orientation.x, cylinder.pose.pose.orientation.y, cylinder.pose.pose.orientation.z, cylinder.pose.pose.orientation.w,cylinder.pose.pose.position.x,  cylinder.pose.pose.position.y,  cylinder.pose.pose.position.z);
      
      ROS_INFO("Received cylinder"); 
      
@@ -168,7 +169,7 @@ private:
       
      }
      
-     if(cylinder.h>(2)*cylinder.r)
+     if(cylinder.h>cylinder.r)
      {
       affordance=(int)1;
      }
@@ -223,8 +224,9 @@ private:
         count=count+(int)1;
         if(count>(int)iteration) 
         { 
-         response.result = response.OTHER_ERROR;
-         break;
+         //response.result = response.OTHER_ERROR;
+         //break;
+          affordance=(int)2;
         }
      }     //sleep(2);
      // if(affordance==(int)2)

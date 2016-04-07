@@ -217,7 +217,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     graspplanning_pub_.publish(cyl_marker);
 
     ros::Time now = ros::Time::now();
-    broadcaster_.sendTransform(tf::StampedTransform(rot_cyl, now, "vito_anchor", "cylinder"));
+    //broadcaster_.sendTransform(tf::StampedTransform(rot_cyl, now, "vito_anchor", "cylinder"));
           
     
     ROS_INFO("Starting wrist planning for cylinder"); 
@@ -266,7 +266,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
       // // class to deal directly with the world.
       moveit::planning_interface::PlanningSceneInterface planning_scene_interface;   
       
-        group.allowReplanning ("true");
+        group.allowReplanning ("false");
      //group.setNumPlanningAttempts(10);
      //group.setPlannerId("RRTstarkConfigDefault");
      //group.setPlannerId("SBLkConfigDefault");
@@ -456,7 +456,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));
            trajector[i].setRotation(orientation_traj[i]); 
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
         
            ROS_INFO("Showed traj_number:%d",i);
 
@@ -565,7 +565,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
             
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
           
         
            ROS_INFO("Showed traj_number:%d",i);
@@ -659,7 +659,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
          trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
          //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
          trajector[i].setRotation(orientation_traj[i]); 
-         broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+         //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
         
          ROS_INFO("Showed traj_number:%d",i); 
 
@@ -729,7 +729,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
   int int_jump_max(10);
 
 
-  while((double)fraction*100<(double)95)
+  while((double)fraction*100<(double)99)
   {  
    for (int i = 0; i < int_jump_max; ++i)
    {
@@ -750,7 +750,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
      //sleep(2.0);
   
    
-     if((double)fraction>(double)0.95)
+     if((double)fraction>(double)0.99)
      {
      // std::ofstream name_file_ptr;
      // name_file_ptr.open("/home/pacman/Projects/LUCAGEMMA/file_txt/cylinder_affordance_2_trajectory_demo.txt",std::ios::app);
@@ -783,7 +783,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     }
     //
   } 
-    if((double)fraction*100>(double)95) 
+    if((double)fraction*100>(double)99) 
     {
     ROS_DEBUG("EXit While2::Find solution with eef_step and jump_threshold: %f %f",eef_step,jump_threshold);
     response.result=response.SUCCESS;

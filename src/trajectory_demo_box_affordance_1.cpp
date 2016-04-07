@@ -255,7 +255,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemo::Request &request, Trajecto
     graspplanning_pub_.publish(box_marker);
 
     ros::Time now = ros::Time::now();
-    broadcaster_.sendTransform(tf::StampedTransform(rot_plan, now, "world_link",  "box"));
+    //broadcaster_.sendTransform(tf::StampedTransform(rot_plan, now, "world_link",  "box"));
           
     
     ROS_INFO("Starting wrist planning for box"); 

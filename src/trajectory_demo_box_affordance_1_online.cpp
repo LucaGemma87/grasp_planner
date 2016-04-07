@@ -218,7 +218,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoPlane::Request &request, Tra
     graspplanning_pub_.publish(box_marker);
 
     ros::Time now1 = ros::Time::now();
-    broadcaster_.sendTransform(tf::StampedTransform(rot_plan, now1, "vito_anchor",  "box"));
+    //broadcaster_.sendTransform(tf::StampedTransform(rot_plan, now1, "vito_anchor",  "box"));
           
     
     ROS_INFO("Starting wrist planning for box"); 
@@ -480,7 +480,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoPlane::Request &request, Tra
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));
            trajector[i].setRotation(orientation_traj[i]); 
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
         
            ROS_INFO("Showed traj_number:%d",i);
 
@@ -578,7 +578,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoPlane::Request &request, Tra
             
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
           
         
            ROS_INFO("Showed traj_number:%d",i);
@@ -672,7 +672,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoPlane::Request &request, Tra
          trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
          //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
          trajector[i].setRotation(orientation_traj[i]); 
-         broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+         //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
         
          ROS_INFO("Showed traj_number:%d",i); 
 

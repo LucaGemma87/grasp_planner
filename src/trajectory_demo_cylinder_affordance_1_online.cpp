@@ -125,7 +125,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
 
    moveit_msgs::DisplayTrajectory display_trajectory;  
   double pi(3.1415);
-  double threshold_distance((double)0.02);
+  double threshold_distance((double)0.03);
   ROS_INFO("Listening for world_link_2_wrist_stamped");
   // geometry_msgs::PoseStamped pose_wr_msg=request.WristPose;
   // tf::Stamped<tf::Transform> pose_wr;
@@ -224,7 +224,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     graspplanning_pub_.publish(cyl_marker);
 
     ros::Time now1 = ros::Time::now();
-    broadcaster_.sendTransform(tf::StampedTransform(rot_cyl, now1, "vito_anchor", "cylinder"));
+    //broadcaster_.sendTransform(tf::StampedTransform(rot_cyl, now1, "vito_anchor", "cylinder"));
           
     
     ROS_INFO("Starting wrist planning for cylinder"); 
@@ -261,7 +261,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
       // // class to deal directly with the world.
       moveit::planning_interface::PlanningSceneInterface planning_scene_interface;   
       
-        group.allowReplanning ("true");
+        group.allowReplanning ("false");
      //group.setNumPlanningAttempts(10);
      //group.setPlannerId("RRTstarkConfigDefault");
      //group.setPlannerId("SBLkConfigDefault");
@@ -319,7 +319,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
          // core cpp
          
          double sigma4=(double)6*pow(position_cylinder[1]*position_wrist_home[1],2);
-          ROS_INFO("sigma4 = %f",sigma4);
+         ROS_INFO("sigma4 = %f",sigma4);
 
 
          double sigma5=(double)6*pow(position_cylinder[0]*position_wrist_home[0],2);
@@ -398,10 +398,10 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
          {
            theta = -atan2(distance_x,distance_y); 
          } 
+         
          Roll_wrist_end=(double)(roll_wrist+pi/4+2*theta);//+2*theta+pi/20
-         //Roll_wrist_end=(double)(0);
-         Pitch_wrist_end=(double)(pitch_wrist);
-         Yaw_wrist_end=(double)(yaw_wrist+pi/4);
+         Pitch_wrist_end=(double)(pitch_wrist); // old without pi/4
+         Yaw_wrist_end=(double)(yaw_wrist+pi/4);//+pi/4  +pi/6
          //Yaw_wrist_end=(double)(pi+2*theta);
          // Roll_wrist_end=(double)(-pi/2);
          // Pitch_wrist_end=(double)(-pi/2);
@@ -485,7 +485,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));
            trajector[i].setRotation(orientation_traj[i]); 
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name[i]));
         
            ROS_INFO("Showed traj_number:%d",i);
 
@@ -582,7 +582,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
             
            trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
            trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
-           broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+           //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
           
         
            ROS_INFO("Showed traj_number:%d",i);
@@ -676,7 +676,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
          trajector[i].setOrigin(tf::Vector3(x_wrist_traj[i],y_wrist_traj[i],z_wrist_traj[i]));
          //trajector[i].setRotation(tf::createQuaternionFromRPY(Roll_angle_traj[i], Pitch_angle_traj[i],Yaw_angle_traj[i]));  
          trajector[i].setRotation(orientation_traj[i]); 
-         broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
+         //broadcaster_.sendTransform(tf::StampedTransform(trajector[i], now, "vito_anchor", traj_name));
         
          ROS_INFO("Showed traj_number:%d",i); 
 
@@ -745,7 +745,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
   int int_jump_max(10);
   //group.addTimeParametrization(trajectory);
 
-  while((double)fraction*100<(double)95)
+  while((double)fraction*100<(double)99)
   {  
    for (int i = 0; i < int_jump_max; ++i)
    {
@@ -759,7 +759,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
       
      ROS_INFO("Visualizing plan 4 (cartesian path) (%.2f%% acheived)",
         fraction * 100.0);    
-     if((double)fraction*100>(double)95)
+     if((double)fraction*100>(double)99)
     {
       ROS_INFO("Robot Moving");
       robot_state::RobotState start_state(*group.getCurrentState());
@@ -779,7 +779,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
      //sleep(2.0);
   
    
-    if((double)fraction>(double)0.95)
+    if((double)fraction>(double)0.99)
     {
     // //  std::ofstream name_file_ptr;
     // //  name_file_ptr.open("/home/pacman/Projects/LUCAGEMMA/file_txt/cylinder_trajectory_demo.txt",std::ios::app);
@@ -801,7 +801,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     }
     // //
    } 
-   if((double)fraction*100>(double)95)
+   if((double)fraction*100>(double)99)
     {
       ROS_INFO("Robot Moving");
           //display_trajectory.trajectory_start = trajectory.start_state_;
@@ -822,7 +822,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     }
   }
   
-  if((double)fraction*100>(double)95) 
+  if((double)fraction*100>(double)99) 
   {
      // 
    ROS_DEBUG("EXit While2::Find solution with eef_step and jump_threshold: %f %f",eef_step,jump_threshold);
@@ -854,7 +854,7 @@ bool TrajectoryDemos::serviceCallback(TrajectoryDemoCylinder::Request &request, 
     //   ROS_DEBUG("EXit While1::Find solution with eef_step and jump_threshold: %f %f",eef_step,jump_threshold);
     //  // break;
     // }
-    if((double)fraction*100>(double)95)
+    if((double)fraction*100>(double)99)
     {
       break;
     }
